@@ -8,6 +8,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: rgb(87,131,92);
+    background: radial-gradient(circle, rgba(87,131,92,1) 0%, rgba(53,82,56,1) 100%);
 }
 
 img {
