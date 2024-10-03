@@ -1,7 +1,7 @@
 import React from 'react';
 import "./WaveAnimation.css";
 
-const WaveAnimation = (isPlaying) => {
+const WaveAnimation = ({isPlaying}) => {
     const waveClass = isPlaying ? "box active" : "box";
 
 

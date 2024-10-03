@@ -17,11 +17,9 @@
 
 .song-title {
     text-align: center;
-    font-size: 60px;
+    font-size: 58px;
     font-weight: bold;
     margin: 0px;
-    /* color: #CCFCCB; */
-    /* color: #3ACF71; */
     color: #A0FA9E;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -29,7 +27,8 @@
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
-}
+  }
+
 
 .song-artist {
     /* color: #6C9D72; */
