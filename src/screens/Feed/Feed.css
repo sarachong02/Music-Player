@@ -11,11 +11,12 @@
     width: 80%; /* Takes up 80% of the screen width */
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 2%;
     margin-left: 10px;
     margin-top: 7px;
     gap: 5%;
+    height: auto;
 }
 
 /* Right feed section */
@@ -32,7 +33,9 @@
 .new-releases-body, .featured-playlist-body {
     height: 48%; /* Each container takes up half the height within the left section */
     width: 100%;
-    margin-bottom: inherit;
+    flex-grow: 1;
+    /* margin-bottom: inherit; */
+    margin-bottom: 1.5rem;
 }
 
 /* Mobile responsiveness: Stack both left and right feeds vertically */
