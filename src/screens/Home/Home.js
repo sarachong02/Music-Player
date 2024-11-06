@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { setClientToken } from '../../spotify';
 
 import Sidebar from '../../components/Sidebar/Sidebar'
@@ -11,6 +12,7 @@ import Favorites from "../Favorites/Favorites";
 import SignOut from '../SignOut/SignOut';
 
 import "./Home.css"
+import { CgFeed } from 'react-icons/cg';
 
 
 const Home = () => {
@@ -37,6 +39,7 @@ const Home = () => {
       <div className="main-body">
         <Sidebar />
         <Routes>
+            <Route path="/" element={<Feed />} /> {/* Adjust default component */}
             <Route path="/library" element={<Library />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/player" element={<Player />} />
