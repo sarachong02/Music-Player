@@ -1,0 +1,27 @@
+.signout-page{
+    background-color: #CCFCCB;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.signout-btn{
+    width: 300px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: rgb(160, 250, 158, 1);
+    cursor: pointer;
+}
+
+.signout-page p {
+    text-decoration: underline;
+}
+
+.signout-page p:hover {
+    transform: scale(1.1); /* Using transform for scaling */
+    transition: transform 0.2s ease-in-out; /* Optional: Adds smooth scaling effect */
+}

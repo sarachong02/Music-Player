@@ -7,7 +7,8 @@ import Login from '../auth/Login';
 import Library from '../Library/Library';
 import Feed from '../Feed/Feed';
 import Player from '../Player/Player';
-import Favorites from "../Favorites/Favorites"
+import Favorites from "../Favorites/Favorites";
+import SignOut from '../SignOut/SignOut';
 
 import "./Home.css"
 
@@ -33,15 +34,16 @@ const Home = () => {
     <Login />
   ) : (
     <Router>
-        <div className='main-body'>
-          <Sidebar />
-          <Routes>
-              <Route path='/library' element={<Library />} />
-              <Route path='/feed' element={<Feed />} />
-              <Route path='/player' element={<Player />} />
-              <Route path='/favorites' element={<Favorites />} />
+      <div className="main-body">
+        <Sidebar />
+        <Routes>
+            <Route path="/library" element={<Library />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/player" element={<Player />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/signout" element={<SignOut />} />
           </Routes>
-        </div>
+      </div>
     </Router>
   )
 }
