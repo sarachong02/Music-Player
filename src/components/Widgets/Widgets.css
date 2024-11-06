@@ -11,3 +11,13 @@
     -webkit-backdrop-filter: blur(12.5px);
     backdrop-filter: blur(12.5px);
 }
+
+/* Media query for smaller devices */
+@media (max-width: 768px) {
+    .widgets-body {
+        flex-direction: column; /* Stack the content vertically on smaller devices */
+        height: auto; /* Let height adjust automatically when stacked */
+        margin: 5% auto; /* Optional: Adjust margin for mobile */
+        width: auto;
+    }
+}

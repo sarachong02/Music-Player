@@ -19,15 +19,6 @@ const WidgetCard = ({title, items, type}) => {
                         image={item?.images?.[2]?.url}
                     />
                 );
-            } else if (type === 'newReleases') {
-                return (
-                    <WidgetEntry
-                        key={index}
-                        title={item?.name}
-                        subtitle={item?.artists?.[0]?.name}
-                        image={item?.images?.[2]?.url}
-                    />
-                );
             } else if (type === 'featuredPlaylists') {
                 return (
                     <WidgetEntry
@@ -46,25 +37,7 @@ const WidgetCard = ({title, items, type}) => {
                         image={item?.album?.images?.[0]?.url}
                     />
                 )
-            } else if (type === 'myTopTracks') {
-                return (
-                    <WidgetEntry
-                        key={index}
-                        title={item?.name}
-                        subtitle={`Popularity: ${item?.popularity}`}
-                        image={item?.album?.images?.[0]?.url}
-                    />
-                )
-            } else if (type === 'recommendations') {
-                return (
-                    <WidgetEntry
-                        key ={index}
-                        title={item?.name}
-                        subtitle={`${item?.artists?.[0].name}`}
-                        image={item?.album?.images?.[0]?.url}
-                    />
-                )
-            }
+            } 
             return null;
         })}
         </div>

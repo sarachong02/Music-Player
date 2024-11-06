@@ -43,3 +43,12 @@
 .widgetcard-body:hover .widget-fade{
     opacity: 1;
 }
+
+/* Media query for smaller devices */
+@media (max-width: 768px) {
+    .widgetcard-body {
+        width: 90%; /* Make it fill the container */
+        height: auto; /* Adjust the height to fit content on smaller screens */
+        margin-bottom: 10px; /* Optional: Add margin between cards for mobile */
+    }
+}

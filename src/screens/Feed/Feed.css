@@ -46,6 +46,7 @@
         width: 90%; /* Both sections take up 100% of the width */
         height: auto; /* Allow each section to expand to fit content */
         padding: 1%;
+        gap: 3%;
     }
 
     /* Make sure each body container (e.g., 'new-releases-body') fills up its section */

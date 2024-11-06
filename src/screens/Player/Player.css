@@ -2,6 +2,8 @@
     width: 68%;
     margin-right: 2%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .right-player-body {
@@ -10,4 +12,50 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+/* Media query for smaller devices */
+@media (max-width: 768px) {
+    .screen-container {
+        flex-direction: column; /* Stack the content vertically on smaller devices */
+        gap: 50px; /* Optional: Adjust gap between sections if necessary */
+    }
+
+    .left-player-body, .right-player-body {
+        width: 100%; /* Set both sections to full width */
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 10px; /* Add some space between the stacked sections if needed */
+    }
+
+    .player-body{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Optional: You can adjust heights or spacing inside each section */
+    .left-player-body {
+        width: 100%; /* Take up full width on smaller screens */
+        margin-right: 0; /* Remove right margin */
+        flex-direction: column; /* Stack vertically */
+        gap: 5%; /* Space between sections */
+        height: auto;
+    }
+
+    .player-body, .widget-body {
+        width: 100%; /* Ensure they take up full width */
+        margin-bottom: 50px; /* Add some space between them */
+    }
+
+    .player-right-body{
+        gap: 2%;
+    }
+
+    .player-left-body {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        gap: 20px; /* Space between items if needed */
+    }
+
 }

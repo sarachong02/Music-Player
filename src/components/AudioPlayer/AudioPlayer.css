@@ -59,3 +59,14 @@
     /* color: #6C9D72; */
     color: #A0FA9E;
 }
+
+@media (max-width: 768px) {
+    .song-duration{
+        width: 100%;
+    }
+
+    .player-right-body{
+        width: 90%;
+        gap: 5px;
+    }
+}

@@ -24,3 +24,25 @@ circle {
         transform: rotate(359deg);
     }
 }
+
+@media (max-width: 768px) {
+    .progress-circle {
+        width: 100%; /* Make it take up full width on mobile */
+        height: auto; /* Let the height adjust automatically based on width */
+        max-width: 400px; /* Optional: Limit max width to avoid overly stretched circle */
+        margin: 0 auto; /* Center it horizontally */
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    
+    /* If you have any other specific styles for the circle or its children, adjust them here */
+    circle {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .active-image {
+        width: 100%;
+        height: 100%;
+    }
+}

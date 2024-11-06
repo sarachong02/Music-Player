@@ -79,6 +79,25 @@
     .playlist-card {
         width: 30%; /* Adjust width for medium screens */
     }
+
+    .playlist-fade{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        width: 84%;
+        height: 34%;
+        border-radius: 20px;
+        display: flex;
+        align-items: end;
+        justify-content: flex-end;
+        padding: 6%;
+        transition: 0.3s ease;
+    }
+
+    .playlist-card:hover .playlist-fade{
+        opacity: 1;
+    }
 }
 
 @media (max-width: 900px) {
@@ -89,6 +108,7 @@
         width: 95%;
         height: 95%;
     }
+
 }
 
 @media (max-width: 600px) {
@@ -100,4 +120,28 @@
         width: 95%;
         height: 95%;
     }
+
+    @media (max-width: 600px) {
+        .playlist-card {
+            width: 100%; /* Full width for mobile */
+            height: auto;
+            position: relative;
+        }
+    
+        .playlist-fade{
+            position: absolute;
+            right: -1%;
+            bottom: -5%;
+            opacity: 1;
+            width: 84%;
+            height: 34%;
+            border-radius: 20px;
+            display: flex;
+            align-items: end;
+            justify-content: flex-end;
+            padding: 6%;
+            transition: 0.3s ease;
+        }
+    }
+    
 }
