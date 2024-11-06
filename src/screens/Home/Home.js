@@ -8,7 +8,6 @@ import Library from '../Library/Library';
 import Feed from '../Feed/Feed';
 import Player from '../Player/Player';
 import Favorites from "../Favorites/Favorites"
-import Trending from '../Trending/Trending';
 
 import "./Home.css"
 
@@ -39,7 +38,6 @@ const Home = () => {
           <Routes>
               <Route path='/library' element={<Library />} />
               <Route path='/feed' element={<Feed />} />
-              <Route path='/trending' element={<Trending />} />
               <Route path='/player' element={<Player />} />
               <Route path='/favorites' element={<Favorites />} />
           </Routes>

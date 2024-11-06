@@ -74,3 +74,30 @@
     padding: 6%;
     transition: 0.3s ease;
 }
+
+@media (max-width: 1200px) {
+    .playlist-card {
+        width: 30%; /* Adjust width for medium screens */
+    }
+}
+
+@media (max-width: 900px) {
+    .playlist-card {
+        width: 45%; /* Adjust width for smaller screens */
+    }
+    .library-body{
+        width: 95%;
+        height: 95%;
+    }
+}
+
+@media (max-width: 600px) {
+    .playlist-card {
+        width: 100%; /* Full width for mobile devices */
+        height: auto; /* Adjust height for better display */
+    }
+    .library-body{
+        width: 95%;
+        height: 95%;
+    }
+}

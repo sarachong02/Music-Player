@@ -1,150 +1,95 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./AudioPlayer.css";
 import Controls from "../AudioPlayer/Controls";
-import ProgressCircle from "../AudioPlayer/ProgressCircle"
-import WaveAnimation from "../AudioPlayer/WaveAnimation"
+import ProgressCircle from "../AudioPlayer/ProgressCircle";
+import WaveAnimation from "../AudioPlayer/WaveAnimation";
 
-export default function AudioPLayer({
+export default function AudioPlayer({
   currentTrack,
   currentIndex,
   setCurrentIndex,
   total,
 }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true); // Start playing
   const [trackProgress, setTrackProgress] = useState(0);
-  const [isMuted, setIsMuted] = useState(true); // State for mute
-  var audioSrc = total[currentIndex]?.track.preview_url;
-
-  const audioRef = useRef(new Audio(total[0]?.track.preview_url));
-
+  const audioRef = useRef(new Audio());
   const intervalRef = useRef();
 
-  const isReady = useRef(false);
-
-  const { duration } = audioRef.current;
-
-  const currentPercentage = duration ? (trackProgress / duration) * 100 : 0;
-
-  const startTimer = () => {
-    clearInterval(intervalRef.current);
-
-    intervalRef.current = setInterval(() => {
-      if (audioRef.current.ended) {
-        handleNext();
-      } else {
-        setTrackProgress(audioRef.current.currentTime);
-      }
-    }, [1000]);
-  };
+  const audioSrc = total[currentIndex]?.track.preview_url;
 
   useEffect(() => {
-    if (audioRef.current.src) {
-      if (isPlaying) {
-        audioRef.current.play().then(() => {
-            if (isMuted) {
-                setIsMuted(false); // Unmute on successful play
-              }
-            });
-            startTimer();
-            } else {
-                clearInterval(intervalRef.current);
-                audioRef.current.pause();
-            }
-        // audioRef.current.play();
-        // startTimer();
-    } else {
-      if (isPlaying) {
-        audioRef.current = new Audio(audioSrc);
-        audioRef.current.play().then(() => {
-            if (isMuted) {
-              setIsMuted(false); // Unmute on successful play
-            }
-          });
+    // Set the audio source when the currentIndex changes
+    audioRef.current.src = audioSrc;
+    setTrackProgress(0); // Reset progress when the track changes
+
+    // Automatically play the new track
+    if (isPlaying) {
+      audioRef.current.play()
+        .then(() => {
           startTimer();
-        } else {
-          clearInterval(intervalRef.current);
-          audioRef.current.pause();
-        }
+        })
+        .catch((error) => {
+          console.error("Playback failed:", error);
+        });
     }
-  }, [isPlaying]);
+  }, [currentIndex, audioSrc, isPlaying]); // Add isPlaying to dependencies
 
   useEffect(() => {
-    audioRef.current.pause();
-    audioRef.current = new Audio(audioSrc);
-
-    setTrackProgress(audioRef.current.currentTime);
-
-    if (isReady.current) {
-      audioRef.current.play();
-      setIsPlaying(true);
-      startTimer();
+    if (isPlaying) {
+      audioRef.current.play()
+        .then(() => {
+          startTimer();
+        })
+        .catch((error) => {
+          console.error("Playback failed:", error);
+        });
     } else {
-      isReady.current = true;
+      audioRef.current.pause();
+      clearInterval(intervalRef.current);
     }
-  }, [currentIndex]);
 
-//  useEffect(() => {
-//     // Create a new Audio instance only when the user clicks play for the first time
-//     if (isReady.current) {
-//       audioRef.current.pause(); // Pause the current audio before changing the track
-//       audioRef.current.src = audioSrc; // Update the source
-//       setTrackProgress(0); // Reset track progress
-//       audioRef.current.play().catch((error) => {
-//         console.error("Playback failed:", error); // Catch any errors
-//       });
-//       setIsPlaying(true); // Ensure it is set to playing
-//       startTimer(); // Start the timer
-//     } else {
-//       isReady.current = true; // Mark that the audio has been initialized
-//     }
-//   }, [currentIndex]);
-
-  useEffect(() => {
     return () => {
       audioRef.current.pause();
       clearInterval(intervalRef.current);
     };
-  }, []);
+  }, [isPlaying]);
+
+  const startTimer = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setTrackProgress(audioRef.current.currentTime);
+      if (audioRef.current.ended) {
+        handleNext();
+      }
+    }, 1000);
+  };
 
   const handleNext = () => {
     if (currentIndex < total.length - 1) {
       setCurrentIndex(currentIndex + 1);
-    } else setCurrentIndex(0);
+    } else {
+      setCurrentIndex(0);
+    }
   };
 
   const handlePrev = () => {
-    if (currentIndex - 1 < 0) setCurrentIndex(total.length - 1);
-    else setCurrentIndex(currentIndex - 1);
-  };
-
-  const addZero = (n) => {
-    return n > 9 ? "" + n : "0" + n;
-  };
-  const artists = [];
-  currentTrack?.album?.artists.forEach((artist) => {
-    artists.push(artist.name);
-  });
-
-  const handlePlay = () => {
-    if (isPlaying) {
-      setIsPlaying(false);
-      audioRef.current.pause(); // Pause the audio
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
     } else {
-      setIsPlaying(true);
-      audioRef.current.play().catch((error) => {
-        console.error("Playback failed:", error); // Catch any errors
-      });
-      audioRef.current.muted = false; // Unmute when the play button is pressed
+      setCurrentIndex(total.length - 1);
     }
   };
-  
+
+  const handlePlay = () => {
+    setIsPlaying((prev) => !prev); // Toggle play/pause
+  };
 
   return (
     <div className="player-body flex">
       <div className="player-left-body">
         <ProgressCircle
-          percentage={currentPercentage}
-          isPlaying={true}
+          percentage={(trackProgress / audioRef.current.duration) * 100}
+          isPlaying={isPlaying}
           image={currentTrack?.album?.images[0]?.url}
           size={300}
           color="#A0FA9E"
@@ -152,17 +97,16 @@ export default function AudioPLayer({
       </div>
       <div className="player-right-body flex">
         <p className="song-title">{currentTrack?.name}</p>
-        <p className="song-artist">{artists.join(" | ")}</p>
+        <p className="song-artist">{currentTrack?.album?.artists.map(artist => artist.name).join(" | ")}</p>
         <div className="player-right-bottom flex">
           <div className="song-duration flex">
-            <p className="duration">0:{addZero(Math.round(trackProgress))}</p>
+            <p className="duration">0:{String(Math.floor(trackProgress)).padStart(2, '0')}</p>
             <WaveAnimation isPlaying={isPlaying} />
             <p className="duration">0:30</p>
           </div>
           <Controls
             isPlaying={isPlaying}
-            handlePlay = {handlePlay}
-            setIsPlaying={setIsPlaying}
+            handlePlay={handlePlay}
             handleNext={handleNext}
             handlePrev={handlePrev}
             total={total}

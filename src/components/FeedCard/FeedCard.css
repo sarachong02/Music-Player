@@ -1,0 +1,74 @@
+/* FeedCard.css */
+
+.feedcard-body {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    /* background: radial-gradient(circle, rgba(113, 169, 136, 1) -21%, rgba(72, 128, 79, 1) 9%, rgba(108, 157, 114, 1) 100%); */
+    /* background: rgb(93,138,112);
+    background: radial-gradient(circle, rgba(93,138,112,1) -21%, rgba(72,128,79,1) 9%, rgba(108,157,114,1) 100%); */
+    background-image: linear-gradient(45deg,  #243D25,#6BCB77);
+background-image: -webkit-linear-gradient(45deg,  #243D25,#6BCB77);
+    padding: 2%;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Title container to hold the title at the top */
+  .title-container {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .widget-title {
+    font-size: 20px; /* Increase title size */
+    font-weight: 800;
+    color: #CCFCCB;
+  }
+  
+  /* Responsive grid for entries container with larger entries */
+/* Default grid layout for other types */
+  .entries-container {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  /* Single column layout for recommendations */
+  .recommendations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow:hidden;
+  }
+  
+  /* Styles for each entry */
+  .feedcard-body .entry-body {
+    padding: 10px; /* Add more padding */
+    border-radius: 10px; /* Increase border radius */
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .feedcard-body .entry-body:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .feedcard-body .entry-title {
+    font-size: 18px; /* Increase title size within each entry */
+    font-weight: bold;
+    color: #CCFCCB;
+  }
+  
+  .feedcard-body .entry-subtitle {
+    font-size: 16px; /* Increase subtitle size */
+    color: #b0e0b6;
+  }
+  
+  .feedcard-body .entry-image {
+    width: 60px; /* Increase image size */
+    height: 60px;
+    margin-right: 15px; /* Increase spacing between image */
+  } 
