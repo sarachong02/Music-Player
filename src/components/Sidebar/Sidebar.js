@@ -28,9 +28,9 @@ const Sidebar = () => {
 
         <div>
             <SidebarButton title="Feed" to="/feed" icon={<MdSpaceDashboard/>}/>
-            <SidebarButton title="Player" to="/player" icon={<FaPlay/>}/>
             <SidebarButton title="Favorites" to="/favorites" icon={<MdFavorite/>}/>
             <SidebarButton title="Library" to="/library" icon={<IoLibrary/>}/>
+            <SidebarButton title="Player" to="/player" icon={<FaPlay/>}/>
         </div>
         <SidebarButton title="Sign Out" to="/signout" icon={<FaSignOutAlt/>}/>
     </div>

@@ -16,7 +16,7 @@ const SignOut = () => {
     <div className="signout-page">
         <h1>Sign Out of Account?</h1>
         <h4>If you would like to return to the Music Player, please copy this link:</h4>
-        <p>link</p>
+        <p>https://sarachong02.github.io/Music-Player</p>
       <button onClick={handleSignOut} className="signout-btn">
         Sign Out
       </button>
